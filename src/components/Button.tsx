@@ -6,7 +6,6 @@ type ButtonPropsType = {
     className?: string
 }
 
-
 const Button = ({title, callBack, disabled, className}: ButtonPropsType)=> {
     return (
         <button className={className} onClick={callBack} disabled={disabled}>{title}</button>
