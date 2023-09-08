@@ -1,3 +1,6 @@
+$main-color: #56c4e1;
+
+
 body {
   background-color: #1a1a1a;
   color: #fff;
@@ -15,17 +18,21 @@ body {
 
 .counter {
   padding: 12px;
-  border: 1px solid #56c4e1;
+  border: 1px solid $main-color;
   width: 220px;
   height: 160px;
   margin-top: 100px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   &__value {
-    border: 1px solid #3fb1ce;
+    border: 1px solid $main-color;
     border-radius: 8px;
-    margin-bottom: 20px;
     background-color: #383737;
+    padding: 0 15px;
+
   }
 
   &__buttons {
@@ -34,7 +41,7 @@ body {
     column-gap: 5px;
     justify-content: center;
     align-items: center;
-    border: 1px solid #3fb1ce;
+    border: 1px solid $main-color;
     border-radius: 8px;
     background-color: #383737;
   }
@@ -55,15 +62,24 @@ body {
 }
 
 .setting-inputs {
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  row-gap: 10px;
+  label {
+    display: flex;
+    justify-content: space-between;
+
+  }
   input {
-    width: 100px;
-    margin-left: 15px;
-    margin-bottom: 10px;
+    max-width: 100px;
+
     outline: none;
     border: none;
+    border: 1px solid $main-color;
+    border-radius: 3px;
   }
+
 }
 
