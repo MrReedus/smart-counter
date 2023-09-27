@@ -13,18 +13,12 @@ function App() {
         setReset(false)
     }
 
-    console.log(reset)
-    // const handleReset = (resetValue: boolean) => {
-    //     console.log(resetValue)
-    //     setReset(true)
-    // }
-
     return (
         <div className="App">
             <SettingBlock
                 maxValue={maxValue}
                 setMaxValue={setMaxValue}
-                setCallBack={(value) => handleMaxValue(value)} reset={reset}/>
+                handleMaxValue={handleMaxValue} reset={reset}/>
             <CounterBlock
                           maxValue={maxValue}
                           setReset={setReset}/>

@@ -4,14 +4,15 @@ import Button from "../Button";
 type SettingPropsType = {
     maxValue: number
     setMaxValue: React.Dispatch<React.SetStateAction<number>>
-
+    handleMaxValue: (value: number) => void
     reset: boolean
 }
-const SettingBlock = ({reset, maxValue, setMaxValue}: SettingPropsType) => {
+const SettingBlock = ({reset, handleMaxValue, maxValue, setMaxValue}: SettingPropsType) => {
 
     const [disabled, setDisabled] = useState(false)
     const setButtonHandler = (maxValue: number) => {
         setDisabled(true)
+        handleMaxValue(maxValue)
     }
 
     React.useEffect(() => {
