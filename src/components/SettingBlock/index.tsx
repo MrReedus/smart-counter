@@ -1,38 +1,53 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import Button from "../Button";
 
 type SettingPropsType = {
-    setCallBack:(value: number) => void
+    maxValue: number
+    setMaxValue: React.Dispatch<React.SetStateAction<number>>
+    setCallBack: (value: number) => void
+    reset: boolean
 }
-const SettingBlock = (props: SettingPropsType) => {
+const SettingBlock = ({reset, setCallBack, maxValue, setMaxValue}: SettingPropsType) => {
 
-    const [maxValue, setMaxvalue] = useState(0)
-
-    const onChangeMaxValueHandler = (e:any) => {
-        setMaxvalue(Number(e.currentTarget.value))
+    const [disabled, setDisabled] = useState(false)
+    const setButtonHandler = (maxValue: number) => {
+        setDisabled(true)
+        setCallBack(maxValue)
     }
 
-    const onClickSetHandler = () => {
+    React.useEffect(() => {
+        setDisabled(reset ? false : true);
+    }, [reset]);
 
+
+    const onChangeMaxValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setMaxValue(Number(e.currentTarget.value)) // приводим к числу значение из инпута
     }
 
+
+
+
+
+    console.log(disabled)
     return (
 
         <div className="counter">
             <div className="counter__value">
                 <div className="setting-inputs">
-                    <label>max value<input value = {maxValue} type="number" onChange={onChangeMaxValueHandler}/></label>
-                    <label>start value<input type="number" onChange={()=> {}}/></label>
+                    <label>max value<input value={maxValue} type="number" onChange={onChangeMaxValueHandler}/></label>
+                    <label>start value<input type="number" onChange={() => {
+                    }}/></label>
                 </div>
             </div>
 
             <div className="counter__buttons">
 
-                <Button title={'set'} callBack={() => props.setCallBack(maxValue)}
-                 className={'btn'}/>
+                <Button title={'set'} callBack={() => setButtonHandler(maxValue)}
+                        className={disabled ? 'btn-disabled' : 'btn'} disabled={disabled}/>
+
             </div>
 
-добавляет функционал получения максимального значения из компонента настроек и передачи его в компонент счетчика для ограничения
+
         </div>
     )
 }

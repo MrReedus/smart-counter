@@ -7,16 +7,29 @@ import CounterBlock from "./components/CounterBlock/Counter";
 
 function App() {
     const [maxValue, setMaxValue] = useState(5); // Создаем состояние value
-    const handleMaxValue  = (value:number) => {
+    const [reset, setReset] = useState(false);
+    const handleMaxValue = (value: number) => {
         setMaxValue(value)
+        setReset(false)
     }
+
+    console.log(reset)
+    // const handleReset = (resetValue: boolean) => {
+    //     console.log(resetValue)
+    //     setReset(true)
+    // }
 
     return (
         <div className="App">
-            <SettingBlock setCallBack={(value) => handleMaxValue(value)}/>
-            <CounterBlock maxValue={maxValue}/>
+            <SettingBlock
+                maxValue={maxValue}
+                setMaxValue={setMaxValue}
+                setCallBack={(value) => handleMaxValue(value)} reset={reset}/>
+            <CounterBlock
+                          maxValue={maxValue}
+                          setReset={setReset}/>
         </div>
     );
 }
 
-    export default App;
+export default App;

@@ -1,13 +1,19 @@
 import Button from "../Button";
-import React, {useState,useEffect} from "react";
+import React, {useState,} from "react";
 
 type CounterPropsType = {
     maxValue: number
+    // resetCallBack:(isReset:boolean)=>void
+    setReset: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CounterBlock = ({maxValue}: CounterPropsType) => {
+const CounterBlock = ({maxValue, setReset}: CounterPropsType) => {
     const [count, setCount] = useState(0)
 
 
+    const resetButtonHandler = () => {
+        setCount(0)
+        setReset(true) // меняем на тру при клике (сброшено) это значение нужно передать наверх
+    }
 
 
     return (
@@ -22,7 +28,7 @@ const CounterBlock = ({maxValue}: CounterPropsType) => {
                         title={'inc'}
                         disabled={maxValue === count}/>
                 <Button className={'btn'}
-                        callBack={() => setCount(0)}
+                        callBack={resetButtonHandler}
                         title={'reset'}/>
             </div>
 
