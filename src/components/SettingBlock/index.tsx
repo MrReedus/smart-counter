@@ -4,15 +4,14 @@ import Button from "../Button";
 type SettingPropsType = {
     maxValue: number
     setMaxValue: React.Dispatch<React.SetStateAction<number>>
-    setCallBack: (value: number) => void
+
     reset: boolean
 }
-const SettingBlock = ({reset, setCallBack, maxValue, setMaxValue}: SettingPropsType) => {
+const SettingBlock = ({reset, maxValue, setMaxValue}: SettingPropsType) => {
 
     const [disabled, setDisabled] = useState(false)
     const setButtonHandler = (maxValue: number) => {
         setDisabled(true)
-        setCallBack(maxValue)
     }
 
     React.useEffect(() => {
@@ -24,11 +23,6 @@ const SettingBlock = ({reset, setCallBack, maxValue, setMaxValue}: SettingPropsT
         setMaxValue(Number(e.currentTarget.value)) // приводим к числу значение из инпута
     }
 
-
-
-
-
-    console.log(disabled)
     return (
 
         <div className="counter">
