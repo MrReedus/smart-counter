@@ -10,7 +10,7 @@ type SettingPropsType = {
 //     handleMaxValue: (value: number) => void
 //     reset: boolean
 }
-const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus}: SettingPropsType) => {
+const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus, count}: SettingPropsType) => {
 
 
     // const [disabled, setDisabled] = useState(false)
@@ -24,20 +24,20 @@ const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus}: SettingProp
     // }, [reset]);
     //
 
-    const [initialStartValue, setInitialStartValue] = useState('')
-    const [initialMaxValue, setInitialMaxValue] = useState('')
+    const [initialStartValue, setInitialStartValue] = useState(0)
+    const [initialMaxValue, setInitialMaxValue] = useState(0)
 
 
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setInitialMaxValue(e.currentTarget.value)
+        setInitialMaxValue(Number(e.currentTarget.value))
     }
     const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setInitialStartValue(e.currentTarget.value)
+        setInitialStartValue(Number(e.currentTarget.value))
     }
 
     const setterSetValues = () => {
-        setMaxValue(Number(initialMaxValue))
-        setCount(Number(initialStartValue))
+        setMaxValue(initialMaxValue)
+        setCount(initialStartValue)
     }
 
 
@@ -47,14 +47,16 @@ const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus}: SettingProp
             <div className="counter__value">
                 <div className="setting-inputs">
                     <label>max value
-                        <input type="number"
+                        <input style={ initialMaxValue < 0 ? {border: '2px solid red'} : {border: 'none'}}
+                            type="number"
                                onChange={onChangeMaxValue}
                                onFocus={() => setIsFocus(true)}
                                onBlur={() => setIsFocus(false)}
 
                         /></label>
                     <label>start value
-                        <input type="number"
+                        <input style={ initialStartValue < 0 ? {border: '2px solid red'} : {border: 'none'}}
+                            type="number"
                                onChange={onChangeStartValue}
                                onFocus={() => setIsFocus(true)}
                                onBlur={() => setIsFocus(false)}/>

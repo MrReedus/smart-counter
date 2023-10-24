@@ -29,7 +29,10 @@ const CounterBlock = ({ maxValue, count, setCount, isFocus} : CounterPropsType) 
             <div className="counter__value">
                 {isFocus ?
                     <h3 style={{color: '#3fb1ce'}}>Enter values and press 'set'</h3> :
-                    <h1  style={count < maxValue ? {color: '#3fb1ce'} : {color: 'red'}}>{count}</h1>}
+                    <h1  style={count < maxValue ? {color: '#3fb1ce'} : {color: 'red'}}>{count < 0 ? <p
+                        style={{color: 'red',
+                            fontSize: '12px'
+                        }}>error mesage</p>: count}</h1>}
 
             </div>
 
