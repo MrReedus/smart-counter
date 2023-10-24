@@ -4,12 +4,14 @@ import Button from "../Button";
 type SettingPropsType = {
     count: number
     maxValue: number
-    setMaxValue: React.Dispatch<React.SetStateAction<number>>
+    setMaxValue: Dispatch<React.SetStateAction<number>>
     setCount: Dispatch<SetStateAction<number>>
+    setIsFocus:  Dispatch<SetStateAction<boolean>>
 //     handleMaxValue: (value: number) => void
 //     reset: boolean
 }
-const SettingBlock = ({maxValue, setMaxValue, setCount}: SettingPropsType) => {
+const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus}: SettingPropsType) => {
+
 
     // const [disabled, setDisabled] = useState(false)
     // const setButtonHandler = (maxValue: number) => {
@@ -22,8 +24,8 @@ const SettingBlock = ({maxValue, setMaxValue, setCount}: SettingPropsType) => {
     // }, [reset]);
     //
 
-    const [initialStartValue,setInitialStartValue] = useState('')
-    const [initialMaxValue,setInitialMaxValue] = useState('')
+    const [initialStartValue, setInitialStartValue] = useState('')
+    const [initialMaxValue, setInitialMaxValue] = useState('')
 
 
     const onChangeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,20 +35,30 @@ const SettingBlock = ({maxValue, setMaxValue, setCount}: SettingPropsType) => {
         setInitialStartValue(e.currentTarget.value)
     }
 
-
-
     const setterSetValues = () => {
         setMaxValue(Number(initialMaxValue))
         setCount(Number(initialStartValue))
     }
+
 
     return (
 
         <div className="counter">
             <div className="counter__value">
                 <div className="setting-inputs">
-                    <label>max value<input type="number" onChange={onChangeMaxValue}/></label>
-                    <label>start value<input type="number" onChange={onChangeStartValue}/></label>
+                    <label>max value
+                        <input type="number"
+                               onChange={onChangeMaxValue}
+                               onFocus={() => setIsFocus(true)}
+                               onBlur={() => setIsFocus(false)}
+
+                        /></label>
+                    <label>start value
+                        <input type="number"
+                               onChange={onChangeStartValue}
+                               onFocus={() => setIsFocus(true)}
+                               onBlur={() => setIsFocus(false)}/>
+                    </label>
                 </div>
             </div>
 

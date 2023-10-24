@@ -1,34 +1,45 @@
 import Button from "../Button";
-import React, {useState,} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 
-type CounterPropsType = {
-    maxValue: number
-    // resetCallBack:(isReset:boolean)=>void
-    setReset: React.Dispatch<React.SetStateAction<boolean>>;
-}
-const CounterBlock = ({maxValue, setReset}: CounterPropsType) => {
-    const [count, setCount] = useState(0)
+ type CounterPropsType = {
+     maxValue: number
+     count: number
+     setCount: Dispatch<SetStateAction<number>>
+     isFocus: boolean
+//     // resetCallBack:(isReset:boolean)=>void
+//     setReset: React.Dispatch<React.SetStateAction<boolean>>;
+ }
 
 
-    const resetButtonHandler = () => {
-        setCount(0)
-        setReset(true) // меняем на тру при клике (сброшено) это значение нужно передать наверх
+
+
+const CounterBlock = ({ maxValue, count, setCount, isFocus} : CounterPropsType) => {
+
+
+
+    const increment = () => {
+        setCount(count + 1)
     }
-
-
+    const resetCount = () => {
+        setCount(0)
+    }
+    console.log(count)
     return (
         <div className="counter">
             <div className="counter__value">
-                <h1 style={count < maxValue ? {color: '#3fb1ce'} : {color: 'red'}}>{count}</h1>
+                {isFocus ?
+                    <h3 style={{color: '#3fb1ce'}}>Enter values and press 'set'</h3> :
+                    <h1  style={count < maxValue ? {color: '#3fb1ce'} : {color: 'red'}}>{count}</h1>}
+
             </div>
 
             <div className="counter__buttons">
                 <Button className={count === maxValue ? 'btn-disabled' : 'btn'}
-                        callBack={() => setCount(count + 1)}
+                        callBack={increment}
                         title={'inc'}
-                        disabled={maxValue === count}/>
+                        disabled={count === maxValue ? true : false}/>
                 <Button className={'btn'}
-                        callBack={resetButtonHandler}
+                        callBack={resetCount}
                         title={'reset'}/>
             </div>
 
