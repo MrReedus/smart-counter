@@ -7,22 +7,29 @@ import CounterBlock from "./components/CounterBlock/Counter";
 
 function App() {
     const [count, setCount] = useState(0)
-     const [maxValue, setMaxValue] = useState(5);
-    const [isFocus, setIsFocus] = useState(false)
+    const [maxValue, setMaxValue] = useState(5);
+    const [isFocus, setIsFocus] = useState(false);
+    const [inCorrectValue,setInCorrectValue] = useState(false);
+
+    const settingCallBack = (value: boolean) => {
+
+    setInCorrectValue(value)
+
+    }
      // Создаем состояние value
     // const [reset, setReset] = useState(false);
     // const handleMaxValue = (value: number) => {
     //     setMaxValue(value)
     //     setReset(false)
     // }
-    console.log(isFocus)
+
     return (
         <div className="App">
-            <SettingBlock maxValue={maxValue} setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
+            <div className="wrapper">
+                <SettingBlock settingCallBack={settingCallBack} maxValue={maxValue} setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
+                <CounterBlock maxValue={maxValue} count={count} setCount={setCount} isFocus={isFocus} inCorrectValue={inCorrectValue}/>
+            </div>
 
-
-
-            <CounterBlock maxValue={maxValue} count={count} setCount={setCount} isFocus={isFocus}/>
         </div>
     );
 }

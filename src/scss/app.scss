@@ -1,19 +1,23 @@
 $main-color: #56c4e1;
 
 
+
 body {
   background-color: #1a1a1a;
   color: #fff;
-  box-sizing: border-box;
+
 }
 
 .App {
-  max-width: 1280px;
-  padding: 0 20px;
+}
+
+.wrapper {
   display: flex;
   column-gap: 40px;
   justify-content: center;
-
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 
 .counter {
@@ -26,16 +30,24 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 
   &__value {
     border: 1px solid $main-color;
     border-radius: 8px;
     background-color: #383737;
     padding: 0 15px;
+    width: 180px;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
   }
 
   &__buttons {
+    width: 180px;
     height: 40px;
     display: flex;
     column-gap: 5px;
@@ -58,7 +70,14 @@ body {
   border-radius: 3px;
   transition: 0.2s ease;
 
-  &:hover {
+  &:disabled {
+    cursor: default;
+    background-color: #8f8f8f;
+    opacity: 0.5;
+
+  }
+
+  &:hover:not(&:disabled) {
     color: #afabab;
     background-color: rgba(158, 227, 220, 0.44);
   }
@@ -70,14 +89,17 @@ body {
   flex-direction: column;
   margin-bottom: 16px;
   row-gap: 10px;
+
   label {
     display: flex;
     justify-content: space-between;
+    gap: 4px;
+    font-size: 12px;
 
   }
+
   input {
     max-width: 100px;
-
     outline: none;
     border: none;
     border: 1px solid $main-color;
