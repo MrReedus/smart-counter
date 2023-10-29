@@ -9,25 +9,28 @@ function App() {
     const [count, setCount] = useState(0)
     const [maxValue, setMaxValue] = useState(5);
     const [isFocus, setIsFocus] = useState(false);
-    const [inCorrectValue,setInCorrectValue] = useState(false);
+    const [inCorrectValue, setInCorrectValue] = useState(false);
 
     const settingCallBack = (value: boolean) => {
-
-       setInCorrectValue(value)
-
+        setInCorrectValue(value)
     }
-     // Создаем состояние value
-    // const [reset, setReset] = useState(false);
-    // const handleMaxValue = (value: number) => {
-    //     setMaxValue(value)
-    //     setReset(false)
-    // }
+
+    const callbackStartValue = (value: string) => {
+        // временные функции кколлбэки пока не решил что с ними делать
+    }
+    const callbackMaxValue = (value: string) => {
+        // временные функции кколлбэки пока не решил что с ними делать
+    }
+
 
     return (
         <div className="App">
             <div className="wrapper">
-                <SettingBlock inCorrectValue={inCorrectValue} settingCallBack={settingCallBack} maxValue={maxValue} setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
-                <CounterBlock maxValue={maxValue} count={count} setCount={setCount} isFocus={isFocus} inCorrectValue={inCorrectValue}/>
+                <SettingBlock callbackMaxValue={callbackMaxValue} callbackStartValue={callbackStartValue}
+                              inCorrectValue={inCorrectValue} settingCallBack={settingCallBack} maxValue={maxValue}
+                              setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
+                <CounterBlock maxValue={maxValue} count={count} setCount={setCount} isFocus={isFocus}
+                              inCorrectValue={inCorrectValue}/>
             </div>
 
         </div>

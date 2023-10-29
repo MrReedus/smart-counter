@@ -44,10 +44,12 @@ const CounterBlock = ({maxValue, count, setCount, isFocus, inCorrectValue}: Coun
                 <Button className={'btn'}
                         callBack={increment}
                         title={'inc'}
-                        disabled={count === maxValue ? true : false}/>
+                        disabled={count === maxValue || isFocus ? true : false}/>
                 <Button className={'btn'}
                         callBack={resetCount}
-                        title={'reset'}/>
+                        title={'reset'}
+                        disabled={isFocus ? true : false}
+                />
             </div>
 
         </div>
