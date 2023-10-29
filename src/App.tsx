@@ -13,7 +13,7 @@ function App() {
 
     const settingCallBack = (value: boolean) => {
 
-    setInCorrectValue(value)
+       setInCorrectValue(value)
 
     }
      // Создаем состояние value
@@ -26,7 +26,7 @@ function App() {
     return (
         <div className="App">
             <div className="wrapper">
-                <SettingBlock settingCallBack={settingCallBack} maxValue={maxValue} setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
+                <SettingBlock inCorrectValue={inCorrectValue} settingCallBack={settingCallBack} maxValue={maxValue} setMaxValue={setMaxValue} count={count} setCount={setCount} setIsFocus={setIsFocus}/>
                 <CounterBlock maxValue={maxValue} count={count} setCount={setCount} isFocus={isFocus} inCorrectValue={inCorrectValue}/>
             </div>
 

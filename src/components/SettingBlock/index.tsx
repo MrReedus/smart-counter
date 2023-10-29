@@ -8,10 +8,11 @@ type SettingPropsType = {
     setCount: Dispatch<SetStateAction<number>>
     setIsFocus:  Dispatch<SetStateAction<boolean>>
     settingCallBack:(value: boolean)=> void
+    inCorrectValue: boolean
 //     handleMaxValue: (value: number) => void
 //     reset: boolean
 }
-const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus, count, settingCallBack}: SettingPropsType) => {
+const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus, count, settingCallBack, inCorrectValue}: SettingPropsType) => {
 
 
     // const [disabled, setDisabled] = useState(false)
@@ -34,7 +35,7 @@ const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus, count, setti
        let value = Number(e.currentTarget.value)
         setInitialMaxValue(value)
 
-        if (value < 0) {
+        if (value < 0 || value === initialStartValue) {
             settingCallBack(true);
             setIsFocus(false);
             setDisabled(true);
@@ -47,7 +48,7 @@ const SettingBlock = ({maxValue, setMaxValue, setCount, setIsFocus, count, setti
     const onChangeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
         let value = Number(e.currentTarget.value)
         setInitialStartValue(value)
-        if (value < 0) {
+        if (value < 0 || value === initialMaxValue) {
             settingCallBack(true);
             setIsFocus(false)
             setDisabled(true)
@@ -73,7 +74,7 @@ const inputError = {
             <div className="counter__value">
                 <div className="setting-inputs">
                     <label>max value
-                        <input style={ initialMaxValue < 0 ? inputError : {}}
+                        <input style={ inCorrectValue ? inputError : {}}
                             type="number"
 
                                onChange={onChangeMaxValue}
@@ -82,7 +83,7 @@ const inputError = {
 
                         /></label>
                     <label>start value
-                        <input style={ initialStartValue < 0 ? inputError : {}}
+                        <input style={ inCorrectValue ? inputError : {}}
                             type="number"
 
                                onChange={onChangeStartValue}
